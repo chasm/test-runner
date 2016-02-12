@@ -26,6 +26,7 @@ class Runner extends Component {
     }
 
     this.setState({
+      status: 'Running',
       timeout: this.props.test.run(this.updateStatus.bind(this))
     })
   }
@@ -36,7 +37,7 @@ class Runner extends Component {
     this.setState({
       status: (status) ? 'Passed' : 'Failed',
       timeout: false
-    })
+    }, this.props.cb(status))
   }
 
   componentDidMount () {
@@ -62,7 +63,8 @@ class Runner extends Component {
 }
 
 Runner.propTypes = {
-  test: PropTypes.object.isRequired
+  test: PropTypes.object.isRequired,
+  cb: PropTypes.func.isRequired
 }
 
 export default Runner
