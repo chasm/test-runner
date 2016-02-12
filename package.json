@@ -1,0 +1,48 @@
+{
+  "name": "test-runner",
+  "version": "1.0.0",
+  "description": "A simple app for running tests in the browser.",
+  "main": "index.js",
+  "scripts": {
+    "start": "jspm-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chasm/test-runner.git"
+  },
+  "keywords": [],
+  "author": "Charles F. Munat <chas@munat.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chasm/test-runner/issues"
+  },
+  "homepage": "https://github.com/chasm/test-runner#readme",
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "dependencies": {
+    "jspm": "^0.16.27",
+    "jspm-server": "^1.0.1",
+    "ramda": "^0.19.1"
+  },
+  "jspm": {
+    "dependencies": {
+      "babel-preset-es2015": "npm:babel-preset-es2015@^6.5.0",
+      "babel-preset-react": "npm:babel-preset-react@^6.5.0",
+      "babel-preset-stage-0": "npm:babel-preset-stage-0@^6.5.0",
+      "jsx": "npm:jspm-loader-jsx@^0.0.7",
+      "ramda": "npm:ramda@^0.19.1",
+      "react": "npm:react@^0.14.7",
+      "react-bootstrap": "npm:react-bootstrap@^0.28.3",
+      "react-dom": "npm:react-dom@^0.14.7"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}
