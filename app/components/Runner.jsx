@@ -1,70 +1,52 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import { Button } from 'react-bootstrap'
 
-import { addIndex, map, toLower } from 'ramda'
+import { toLower } from 'ramda'
 
-import tests from '../tests.js'
+import { FAILED, PASSED, RUNNING, SET_STATUS } from '../config.js'
 
-const mapIndexed = addIndex(map)
-
-class Runner extends Component {
-
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      status: 'Not Started Yet'
-    }
-  }
-
-  runTest () {
-    console.log('run test', this.state)
-
-    if (this.state.timeout) {
-      window.clearTimeout(this.state.timeout)
-    }
-
-    this.setState({
-      status: 'Running',
-      timeout: this.props.test.run(this.updateStatus.bind(this))
+const Runner = ({ test }, { store }) => {
+  const updateStatus = (status) => {
+    store.dispatch({
+      type: SET_STATUS,
+      id: test.id,
+      status: status ? PASSED : FAILED
     })
   }
 
-  updateStatus (status) {
-    console.log('setting status', status)
+  const runTest = () => {
+    store.dispatch({
+      type: SET_STATUS,
+      id: test.id,
+      status: RUNNING
+    })
 
-    this.setState({
-      status: (status) ? 'Passed' : 'Failed',
-      timeout: false
-    }, this.props.cb(status))
+    test.run(updateStatus)
   }
 
-  componentDidMount () {
-    this.setState({ status: 'Running' }, this.runTest())
+  const getButton = (status) => {
+    return <Button
+      bsSize='small'
+      bsStyle='warning'
+      onClick={runTest}
+      disabled={status === RUNNING}
+    >Run</Button>
   }
 
-  render () {
-    let { test } = this.props
-    let button = (this.state.status === 'Passed' || this.state.status === 'Failed')
-      ? <Button
-          onClick={this.runTest.bind(this)}
-          bsSize='small'
-          bsStyle='warning'
-        >Re-run</Button>
-      : ''
-
-    return <tr>
-      <td>{button}</td>
-      <td>{test.description}</td>
-      <td className={toLower(this.state.status)}>{this.state.status}</td>
-    </tr>
-  }
+  return <tr>
+    <td>{getButton(test.status)}</td>
+    <td>{test.description}</td>
+    <td className={toLower(test.status)}>{test.status}</td>
+  </tr>
 }
 
 Runner.propTypes = {
-  test: PropTypes.object.isRequired,
-  cb: PropTypes.func.isRequired
+  test: PropTypes.object.isRequired
+}
+
+Runner.contextTypes = {
+  store: PropTypes.object
 }
 
 export default Runner

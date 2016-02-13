@@ -1,8 +1,8 @@
 const generateDummyTest = () => {
   let delay = Math.random() * 3000
-  let testPassed = Math.random() > 0.5
+  const testPassed = () => Math.random() > 0.5
 
-  return (callback) => setTimeout(() => callback(testPassed), delay)
+  return (callback) => setTimeout(() => callback(testPassed()), delay)
 }
 
 const tests = [

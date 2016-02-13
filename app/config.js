@@ -1,0 +1,18 @@
+const RELOAD_TESTS = 'RELOAD_TESTS'
+const SET_STATUS   = 'SET_STATUS'
+const RUN_TEST     = 'RUN_TEST'
+
+const PENDING = 'PENDING'
+const RUNNING = 'RUNNING'
+const PASSED  = 'PASSED'
+const FAILED  = 'FAILED'
+
+export {
+  RELOAD_TESTS,
+  SET_STATUS,
+  RUN_TEST,
+  PENDING,
+  RUNNING,
+  PASSED,
+  FAILED
+}
