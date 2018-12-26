@@ -1,4 +1,7 @@
 # test-runner
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/chasm/test-runner.svg)](https://greenkeeper.io/)
+
 A simple app for running tests in the browser.
 
 ```sh
