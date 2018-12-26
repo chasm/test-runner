@@ -26,7 +26,7 @@
   "dependencies": {
     "jspm": "^0.16.27",
     "jspm-server": "^1.0.1",
-    "ramda": "^0.19.1"
+    "ramda": "^0.26.1"
   },
   "jspm": {
     "dependencies": {
